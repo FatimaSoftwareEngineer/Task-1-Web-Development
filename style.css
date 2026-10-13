@@ -1,0 +1,433 @@
+/* ============ 1. VARIABLES & RESET ============ */
+:root {
+  --navy: #0b1f3a;        /* header, footer, headings */
+  --blue: #1d4ed8;        /* main brand colour (buttons, links) */
+  --blue-dark: #1e3a8a;   /* hover */
+  --sky: #eaf1ff;         /* light blue background */
+  --gold: #f4b942;        /* small accent */
+  --paper: #f8fafc;       /* page background */
+  --white: #ffffff;
+  --text: #1e293b;        /* normal text */
+  --muted: #475569;       /* secondary text */
+  --border: #cbd5e1;      /* light border */
+  --border-strong: #94a3b8; /* darker border */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;   /* nav link dabane par heading sticky header ke neeche na chhupe */
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background: var(--paper);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 19px;
+  min-height: 100vh;          /* footer hamesha screen ke neeche rahe */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;                    /* bacha hua khali jagah main le leta hai */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============ 2. HEADER (Flexbox) ============ */
+.header {
+  background: var(--navy);
+  border-bottom: 4px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo {
+  color: var(--white);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.logo span,
+.footer h3 span {
+  color: var(--gold);
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+}
+
+.nav a {
+  color: #dbe4f3;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.nav a:hover {
+  color: var(--white);
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ============ 3. HERO (Flexbox) ============ */
+.hero {
+  padding: 24px 0 32px;
+  background: linear-gradient(180deg, var(--sky) 0%, var(--white) 100%);
+  border-bottom: 2px solid var(--border);
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;     /* mobile: ek ke neeche ek */
+  gap: 36px;
+}
+
+.hero__tag {
+  display: inline-block;
+  color: var(--blue-dark);
+  background: var(--white);
+  border: 1.5px solid var(--blue);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  color: var(--navy);
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.hero__desc {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 52ch;
+  margin-bottom: 28px;
+}
+
+.hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-weight: 700;
+  border: 2px solid var(--blue);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn--primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn--primary:hover {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+}
+
+.btn--outline {
+  background: var(--white);
+  color: var(--blue);
+}
+
+.btn--outline:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.hero__card {
+  position: relative;
+  overflow: hidden;           /* blue patti card ke corners ke andar rahe */
+  background: var(--white);
+  border: 2px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 32px 28px 26px;
+  color: var(--muted);
+  box-shadow: 0 10px 24px rgba(11, 31, 58, 0.08);
+}
+
+.hero__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, var(--blue), var(--navy));
+}
+
+.hero__card-head {
+  display: flex;
+  flex-wrap: wrap;            /* chhoti screen par naam avatar ke neeche aa jata hai */
+  align-items: center;
+  gap: 12px 16px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border);
+}
+
+.hero__avatar {
+  flex-shrink: 0;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  border: 4px solid var(--gold);
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__name {
+  color: var(--navy);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero__role {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  white-space: nowrap;        /* Virtual University of Pakistan ek hi line mein */
+}
+
+.hero__card-title {
+  color: var(--navy);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero__list {
+  list-style: none;
+}
+
+.hero__list li {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 10px 14px;
+  border-left: 4px solid var(--gold);
+  background: var(--paper);
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 10px;
+}
+
+.hero__list li:last-child {
+  margin-bottom: 0;
+}
+
+.hero__label {
+  color: var(--blue-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.hero__value {
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ============ 4. FEATURES (CSS Grid) ============ */
+.features {
+  padding: 32px 0;
+}
+
+.features h2 {
+  color: var(--navy);
+  font-size: 1.8rem;
+  font-weight: 800;
+  display: inline-block;
+  padding-bottom: 8px;
+  border-bottom: 4px solid var(--gold);
+}
+
+.section__intro {
+  color: var(--muted);
+  margin: 8px 0 16px;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* mobile: 1 column */
+  gap: 20px;
+}
+
+.card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-left: 6px solid var(--blue);
+  border-radius: 10px;
+  padding: 28px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 6px 16px rgba(29, 78, 216, 0.12);
+}
+
+.card h3 {
+  color: var(--navy);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+/* ============ 5. FOOTER (Flexbox) ============ */
+.footer {
+  background: var(--navy);
+  border-top: 4px solid var(--gold);
+  color: #dbe4f3;
+  padding-top: 48px;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer h3 {
+  color: var(--white);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #2f4a73;
+}
+
+.footer a:hover {
+  color: var(--gold);
+}
+
+.footer__copy {
+  margin-top: 40px;
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid #2f4a73;
+}
+
+/* ============ 6. RESPONSIVE (Tablet) ============ */
+@media (min-width: 640px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer__col {
+    min-width: 180px;
+  }
+}
+
+/* ============ 7. RESPONSIVE (Desktop) ============ */
+@media (min-width: 960px) {
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero__inner {
+    flex-direction: row;       /* desktop: side by side */
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero__text {
+    flex: 1.4;
+  }
+
+  .hero__card {
+    flex: 1;
+    max-width: 440px;
+  }
+
+  .hero h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero__desc {
+    font-size: 1.2rem;
+  }
+
+  .features__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .hero__role {
+    font-size: 0.92rem;
+  }
+
+  .hero__card {
+    padding: 28px 20px 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
